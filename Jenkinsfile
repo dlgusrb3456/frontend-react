@@ -12,7 +12,7 @@ node {
          sh 'rm ~/.docker/config.json || true'
           
          docker.withRegistry('https://685766701737.dkr.ecr.ap-northeast-1.amazonaws.com', 'ecr:ap-northeast-1:ecr_credential') {
-             app.push("${env.BUILD_NUMBER}")
+             app.push("fe_${env.BUILD_NUMBER}")
              app.push("latest")
      }
   }
@@ -22,7 +22,7 @@ node {
                         branches: [[name: '*/main' ]],
                         extensions: scm.extensions,
                         userRemoteConfigs: [[
-                            url: 'git@github.com:dlgusrb3456/ArgoCD.git',
+                            url: 'git@github.com:dlgusrb3456/ArgoCD_fe.git',
                             credentialsId: 'jenkins-ssh-private',
                         ]]
                 ])
@@ -34,9 +34,9 @@ node {
                         git config --global user.email "dlgusrb3456@naver.com"
                         git config --global user.name "dlgusrb3456"
                         git checkout main
-                        #cd env/dev && kustomize edit set image arm7tdmi/node-hello-world:${env.BUILD_NUMBER}
-                        echo "test jenkins" >> test1.txt
-                        git commit -a -m "updated the image tag"
+                        cd overlay/dev && kustomize edit set image 685766701737.dkr.ecr.ap-northeast-1.amazonaws.com/test:fe_${env.BUILD_NUMBER}
+                     
+                        git commit -a -m "updated the image tag fe_${env.BUILD_NUMBER}"
                         git push
                     """)
           }
