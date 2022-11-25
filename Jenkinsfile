@@ -33,8 +33,8 @@ node {
                         export GIT_SSH_COMMAND="ssh -oStrictHostKeyChecking=no"
                         git config --global user.email "dlgusrb3456@naver.com"
                         git config --global user.name "dlgusrb3456"
-                        git checkout main
                         git pull origin main
+                        git checkout main
                         cd overlay/dev && kustomize edit set image 685766701737.dkr.ecr.ap-northeast-1.amazonaws.com/test:fe_${env.BUILD_NUMBER}
                         git commit -a -m "updated the image tag fe_${env.BUILD_NUMBER}"
                         git push
