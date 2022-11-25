@@ -4,5 +4,5 @@ COPY package.json /app/package.json
 RUN npm install
 COPY public ./public
 COPY src ./src
-EXPOSE 80
+EXPOSE 3000
 ENTRYPOINT ["yarn", "start"]
