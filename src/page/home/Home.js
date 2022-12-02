@@ -6,7 +6,7 @@ class Home extends Component {
     render() {
         return (
             <Fragment >
-                <div> HOHOHOHOHOHO </div>
+                <div> 2022-12-02 21시 </div>
             </Fragment>
         );
     }
